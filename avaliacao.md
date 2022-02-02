@@ -23,8 +23,8 @@ O projeto tem como base as tecnologias descritas abaixo:
 | ![][struts] | https://struts.apache.org/getting-started/ |
 | ![][bootstrap5] | https://getbootstrap.com/docs/5.0/getting-started/introduction/ |
 | ![][h2] | http://www.h2database.com/html/tutorial.html |
-| ![][jetty] | https://www.eclipse.org/jetty/documentation.php |
-| ![][git] | https://www.eclipse.org/jetty/documentation.php |
+| ![][jetty] | https://www.eclipse.org/jetty/ |
+| ![][git] | https://git-scm.com/ |
 | ![][soap] | https://docs.oracle.com/javase/7/docs/api/javax/xml/soap/package-summary.html |
 
 
