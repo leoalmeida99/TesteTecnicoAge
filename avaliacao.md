@@ -100,6 +100,17 @@ No mesmo diretório onde encontrá-se o pom.xml da aplicação, utilize o comando ab
 
 Após terminar a atualização das bibliotecas, é hora de inicializar a aplicação. Para isso, dentro da IDE do eclipse, clique no projeto **avaliacao-dev** que foi importado previamente, abra o menú do eclipse com o botão direito do mouse > Run As > **Maven Build...**. Na janela de **Run Configurations**, digite em **Goals**:   _jetty:run_ e clique em **Run**. Observe no console o servidor inicializando e disponibilizando a aplicação.
 
+## Visualizando console H2
+Com a aplicação iniciada, é possivel acessar o console do H2, que nos permite visualizar tabelas e rodar instruçoes SQL.
+
+Caso venha algo preenchido nos campos **User Name** e **Password** remova.
+
+**Link para acesso**
+>http://localhost:8080/avaliacao/h2-console
+
+**JDBC URL** 
+>_jdbc:h2:mem:avaliacao_
+
 ## Acessando a aplicação
 
 Após o servidor obter o status de "Started", vá até o navegador da sua máquina e insira a url abaixo:
