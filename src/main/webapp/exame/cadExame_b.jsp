@@ -50,6 +50,7 @@
 								<td>${rowid}</td>
 								<td>${nome}</td>
 								<td class="text-end">
+								
 									<s:url action="editarExames" var="editar">
 										<s:param name="exameVo.rowid" value="rowid"></s:param>
 									</s:url>
@@ -57,8 +58,12 @@
 									<a href="${editar}" class="btn btn-warning text-white">
 										<s:text name="label.editar"/>
 									</a>
-
-									<a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmarExclusao">
+									
+									<s:url action="excluirExames" var="excluir">
+										<s:param name="exameVo.rowid" value="rowid"></s:param>
+									</s:url>
+									
+									<a href="${excluir}" class="btn btn-danger" >
 										<s:text name="label.excluir"/>
 									</a>
 								</td>
@@ -85,33 +90,7 @@
 			</div>
 		</div>
 		
-		<div  class="modal fade" id="confirmarExclusao" 
-			data-bs-backdrop="static" data-bs-keyboard="false"
-			tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-		  <div class="modal-dialog" role="document">
-		    <div class="modal-content">
-		      <div class="modal-header">
-		        <h5 class="modal-title"><s:text name="label.modal.titulo"/></h5>
-		        
-		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-		      </div>
-		      
-		      <div class="modal-body">
-		      	<span><s:text name="label.modal.corpo"/></span>
-		      </div>
-		      
-		      <div class="modal-footer">
-	        	<a class="btn btn-secondary" data-bs-dismiss="modal" aria-label="Close">
-					<s:text name="label.nao"/>
-				</a>
-	        	
-				<s:a id="excluir" class="btn btn-primary" style="width: 75px;">
-					<s:text name="label.sim"/>
-				</s:a>						
-		      </div>
-		    </div>		    
-		  </div>
-		</div>
+		
 		
 		<script src="webjars/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
 	</body>

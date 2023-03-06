@@ -31,11 +31,20 @@ public class ExameAction extends Action {
 		return SUCCESS;
 	}
 	
+	
 	public String novo() {
-		if(exameVo.getNome() == null)
+		if(exameVo.getNome() == null) {
 			return INPUT;
-		
-		business.salvarExame(exameVo);
+		}
+		//verificar se e um exame novo ou exame para editar
+
+		if(exameVo.getRowid() != "") {
+			System.out.println("editando exame");
+			business.editarExame(exameVo);
+		}else {
+			System.out.println("salvando exame");
+			business.salvarExame(exameVo);
+		}
 		
 		return REDIRECT;
 	}
@@ -45,9 +54,23 @@ public class ExameAction extends Action {
 			return REDIRECT;
 		
 		exameVo = business.buscarExamePor(exameVo.getRowid());
+//		 exame vo retorna o numero id
+
+//		System.out.println(exameVo);
+//		System.out.println("funfa n?");
 		
 		return INPUT;
 	}
+	
+	public String excluir() {
+		if(exameVo.getRowid() == null)
+			return REDIRECT;
+		
+		business.excluirExame(exameVo);
+		
+		return REDIRECT;
+	}
+	
 	
 	public List<OpcoesComboBuscarExames> getListaOpcoesCombo(){
 		return Arrays.asList(OpcoesComboBuscarExames.values());

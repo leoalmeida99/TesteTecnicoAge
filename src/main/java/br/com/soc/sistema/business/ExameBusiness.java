@@ -19,7 +19,15 @@ public class ExameBusiness {
 	
 	public List<ExameVo> trazerTodosOsExames(){
 		return dao.findAllExames();
-	}	
+	}
+	
+	public void excluirExame(ExameVo exameVo) {
+		dao.excluirExame(exameVo);
+	}
+	
+	public void editarExame(ExameVo exameVo) {
+		dao.editarExame(exameVo);
+	}
 	
 	public void salvarExame(ExameVo exameVo) {
 		try {
