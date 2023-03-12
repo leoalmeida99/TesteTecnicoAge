@@ -101,8 +101,7 @@ public class ExameDao extends Dao {
 	}
 
 	public void excluirExame(ExameVo exameVo) {
-		StringBuilder query = new StringBuilder("delete FROM exame ")
-				.append("WHERE rowid = ?");
+		StringBuilder query = new StringBuilder("delete FROM exame WHERE rowid = ?");
 		
 		try (Connection con = getConexao(); PreparedStatement ps = con.prepareStatement(query.toString())) {
 			int i = 1;

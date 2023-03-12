@@ -6,6 +6,7 @@ public class FuncionarioVo {
 	
 	public FuncionarioVo() {}
 		
+	
 	public FuncionarioVo(String rowid, String nome) {
 		this.rowid = rowid;
 		this.nome = nome;
@@ -28,4 +29,5 @@ public class FuncionarioVo {
 	public String toString() {
 		return "FuncionarioVo [rowid=" + rowid + ", nome=" + nome + "]";
 	}
+	
 }

@@ -54,10 +54,8 @@ public class FuncionarioAction extends Action {
 			return REDIRECT;
 		
 		funcionarioVo = business.buscarFuncionarioPor(funcionarioVo.getRowid());
-//		 exame vo retorna o numero id
+//		 funcionario vo retorna o numero id
 
-//		System.out.println(exameVo);
-//		System.out.println("funfa n?");
 		
 		return INPUT;
 	}

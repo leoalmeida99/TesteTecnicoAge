@@ -77,7 +77,8 @@ public class FuncionarioDao extends Dao {
 	}
 
 	public FuncionarioVo findByCodigo(Integer codigo) {
-		StringBuilder query = new StringBuilder("SELECT rowid id, nm_funcionario nome FROM funcionario ").append("WHERE rowid = ?");
+		StringBuilder query = new StringBuilder("SELECT rowid id, nm_funcionario nome FROM funcionario ")
+				.append("WHERE rowid = ?");
 
 		try (Connection con = getConexao(); PreparedStatement ps = con.prepareStatement(query.toString())) {
 			int i = 1;
@@ -101,32 +102,38 @@ public class FuncionarioDao extends Dao {
 	}
 
 	public void excluirFuncionario(FuncionarioVo funcionarioVo) {
-		StringBuilder query = new StringBuilder("delete FROM funcionario ")
-				.append("WHERE rowid = ?");
-		
-		try (Connection con = getConexao(); PreparedStatement ps = con.prepareStatement(query.toString())) {
+		StringBuilder queryRemoveFuncionario = new StringBuilder("DELETE FROM funcionario WHERE rowid = ?");
+		StringBuilder queryRemoveExamesRealizadoDoFuncionario = new StringBuilder("DELETE FROM exame_realizado WHERE rowid_funcionario = ?");
+
+		try (Connection con = getConexao(); 
+		PreparedStatement psFuncionario = con.prepareStatement(queryRemoveFuncionario.toString());
+		PreparedStatement psExame = con.prepareStatement(queryRemoveExamesRealizadoDoFuncionario.toString())) {
 			int i = 1;
+
+			psFuncionario.setString(i, funcionarioVo.getRowid());
+			psFuncionario.execute();
 			
-			ps.setString(i, funcionarioVo.getRowid());
-			ps.execute();
+			psExame.setString(i, funcionarioVo.getRowid());
+			psExame.execute();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
 
 	public void editarFuncionario(FuncionarioVo funcionarioVo) {
-		StringBuilder query = new StringBuilder("update funcionario set ")
-					.append("nm_funcionario = ? where rowid = ?");
-		
+		StringBuilder query = new StringBuilder("update funcionario set ").append("nm_funcionario = ? where rowid = ?");
+
 		try (Connection con = getConexao(); PreparedStatement ps = con.prepareStatement(query.toString())) {
 			int i = 1;
-			
+
 			ps.setString(i++, funcionarioVo.getNome());
 			ps.setString(i, funcionarioVo.getRowid());
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
+
 }
