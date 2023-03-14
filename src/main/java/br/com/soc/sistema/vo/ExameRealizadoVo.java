@@ -58,12 +58,8 @@ public class ExameRealizadoVo { // tirar duvida se pode int nos atributos cd fun
 
 	public void setDataRealizacao(String string) {
 		this.dataRealizacao = string;
-		
+
 	}
 
-//	@Override
-//	public String toString() {
-//		return "ExameVo [rowid=" + rowid + ", nome=" + +"]";
-//	}
 	
 }

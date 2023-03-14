@@ -70,4 +70,9 @@ public class ExameBusiness {
 			throw new BusinessException(FOI_INFORMADO_CARACTER_NO_LUGAR_DE_UM_NUMERO);
 		}
 	}
+
+//	public void buscarExame(Integer idExame) {
+//		return dao.buscarPorExame(idExame);
+//		
+//	}
 }

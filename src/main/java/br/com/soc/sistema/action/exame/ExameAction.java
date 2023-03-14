@@ -5,9 +5,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import br.com.soc.sistema.business.ExameBusiness;
+import br.com.soc.sistema.dao.examesrealizados.ExameRealizadoDao;
 import br.com.soc.sistema.filter.ExameFilter;
 import br.com.soc.sistema.infra.Action;
 import br.com.soc.sistema.infra.OpcoesComboBuscarExames;
+import br.com.soc.sistema.vo.ExameRealizadoVo;
 import br.com.soc.sistema.vo.ExameVo;
 
 public class ExameAction extends Action {
@@ -15,6 +17,7 @@ public class ExameAction extends Action {
 	private ExameBusiness business = new ExameBusiness();
 	private ExameFilter filtrar = new ExameFilter();
 	private ExameVo exameVo = new ExameVo();
+	
 	
 	public String todos() {
 		exames.addAll(business.trazerTodosOsExames());	
@@ -63,7 +66,12 @@ public class ExameAction extends Action {
 	}
 	
 	public String excluir() {
-		if(exameVo.getRowid() == null)
+		
+		int idExame = Integer.parseInt(exameVo.getRowid());
+		ExameRealizadoDao exameRealizadoDao = new ExameRealizadoDao();
+//		System.out.println(exameRealizadoDao);
+
+		if(exameVo.getRowid() == null || exameRealizadoDao.buscarPorExame(idExame) != null)
 			return REDIRECT;
 		
 		business.excluirExame(exameVo);

@@ -101,6 +101,9 @@ public class ExameDao extends Dao {
 	}
 
 	public void excluirExame(ExameVo exameVo) {
+		
+//		int idExame = Integer.parseInt(exameVo.getRowid());
+		
 		StringBuilder query = new StringBuilder("delete FROM exame WHERE rowid = ?");
 		
 		try (Connection con = getConexao(); PreparedStatement ps = con.prepareStatement(query.toString())) {
@@ -125,7 +128,14 @@ public class ExameDao extends Dao {
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-		
+		}	
 	}
+	
+//	public boolean exameFoiRealizadoPorAlgumFuncionario(int idExame) {
+//		
+//		
+//		
+//	    return true;
+//	}
+	
 }

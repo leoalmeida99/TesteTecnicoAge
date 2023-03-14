@@ -113,8 +113,7 @@ public class ExameRealizadoDao extends Dao {
 	}
 
 	public void excluirExameRealizado(ExameRealizadoVo exameRealizadoVo) {
-		StringBuilder query = new StringBuilder("delete FROM exame_realizado ")
-				.append("WHERE rowid = ?");
+		StringBuilder query = new StringBuilder("delete FROM exame_realizado WHERE rowid = ?");
 		
 		try (Connection con = getConexao(); PreparedStatement ps = con.prepareStatement(query.toString())) {
 			int i = 1;
@@ -142,5 +141,32 @@ public class ExameRealizadoDao extends Dao {
 			e.printStackTrace();
 		}
 		
+	}
+
+	public ExameRealizadoVo buscarPorExame(Integer codigo) {
+		StringBuilder query = new StringBuilder("SELECT rowid id, rowid_funcionario idfuncionario, rowid_exame idexame, dt_realizacao dtrealizacao ")
+				 .append("FROM exame_realizado WHERE rowid_exame = ?");
+		
+		try (Connection con = getConexao(); PreparedStatement ps = con.prepareStatement(query.toString())) {
+			int i = 1;
+
+			ps.setInt(i, codigo);
+
+			try (ResultSet rs = ps.executeQuery()) {
+				ExameRealizadoVo vo = null;
+
+				while (rs.next()) {
+					vo = new ExameRealizadoVo();
+					vo.setRowid(rs.getString("id"));
+					vo.setRowidFuncionario(rs.getString("idfuncionario"));
+					vo.setRowidExame(rs.getString("idexame"));
+					vo.setDataRealizacao(rs.getString("dtrealizacao"));
+				}
+				return vo;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }
