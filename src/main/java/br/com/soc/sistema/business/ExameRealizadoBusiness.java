@@ -11,11 +11,16 @@ import br.com.soc.sistema.vo.ExameRealizadoVo;
 public class ExameRealizadoBusiness {
 
 	private static final String FOI_INFORMADO_CARACTER_NO_LUGAR_DE_UM_NUMERO = "Foi informado um caracter no lugar de um numero";
+	private static final String NAO_FOI_POSSIVEL_REALIZAR_A_BUSCA = "Não foi possivel realizar a busca";
 	private ExameRealizadoDao dao;
 	
 	public ExameRealizadoBusiness() {
 		this.dao = new ExameRealizadoDao();
 	}
+	
+//	public List<ExameRealizadoVo> buscarExamesRealizadosPorFuncionarioExameEData(){
+//		return dao.buscarExamesRealizadosPorFuncionarioExameEData();
+//	}
 	
 	public List<ExameRealizadoVo> trazerTodosOsExamesRealizados(){
 		return dao.findAllExamesRealizados();
@@ -58,14 +63,9 @@ public class ExameRealizadoBusiness {
 					throw new BusinessException(FOI_INFORMADO_CARACTER_NO_LUGAR_DE_UM_NUMERO);
 				}
 			break;
-			// nome não...
-//			case NOME:
-//				funcionarios.addAll(dao.findAllByNome(filter.getValorBusca()));
-//			break;
 		default:
 			break;
 		}
-		
 		return exameRealizado;
 	}
 	
@@ -77,4 +77,19 @@ public class ExameRealizadoBusiness {
 			throw new BusinessException(FOI_INFORMADO_CARACTER_NO_LUGAR_DE_UM_NUMERO);
 		}
 	}
+
+	public ExameRealizadoVo buscarExamesRealizadosPorFuncionarioExameEData(String rowidFuncionario, String rowidExame,
+			String dataRealizacao) {
+		try {
+			Integer idFuncionario = Integer.parseInt(rowidFuncionario);
+			Integer idExame = Integer.parseInt(rowidExame);
+//			Integer id = Integer.parseInt(da);
+			return dao.buscarExamesRealizadosPorFuncionarioExameEData(idFuncionario,idExame,dataRealizacao);
+		}catch (NumberFormatException e) {
+			throw new BusinessException(NAO_FOI_POSSIVEL_REALIZAR_A_BUSCA);
+		}
+		
+		
+	}
+
 }

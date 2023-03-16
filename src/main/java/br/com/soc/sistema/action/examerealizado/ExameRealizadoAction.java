@@ -15,67 +15,73 @@ public class ExameRealizadoAction extends Action {
 	private ExameRealizadoBusiness business = new ExameRealizadoBusiness();
 	private ExameRealizadoFilter filtrar = new ExameRealizadoFilter();
 	private ExameRealizadoVo exameRealizadoVo = new ExameRealizadoVo();
-	
+
 	public String todos() {
-		examesRealizados.addAll(business.trazerTodosOsExamesRealizados());	
+		examesRealizados.addAll(business.trazerTodosOsExamesRealizados());
 
 		return SUCCESS;
 	}
-	
+
 	public String filtrar() {
-		if(filtrar.isNullOpcoesCombo())
+		if (filtrar.isNullOpcoesCombo())
 			return REDIRECT;
-		
+
 		examesRealizados = business.filtrarExamesRealizados(filtrar);
-		
+
 		return SUCCESS;
 	}
-	
+
+	private boolean existeExameRealizado() {
+        // buscar na base de dados se já existe um registro com os mesmos valores de funcionário, exame e data
+//        List<ExameRealizadoVo> exames = business.buscarExamesRealizadosPorFuncionarioExameEData(idFuncionario, idExame, dataRealizacao);
+        ExameRealizadoVo exames = business.buscarExamesRealizadosPorFuncionarioExameEData(exameRealizadoVo.getRowidFuncionario(), exameRealizadoVo.getRowidExame(), exameRealizadoVo.getDataRealizacao());
+        // se existir algum registro, retorna true
+        if(exames == null) {
+        	return false;
+        }
+        
+        return true;
+    }
 	
 	public String novo() {
-		if(exameRealizadoVo.getRowid() == null) {
+		if (exameRealizadoVo.getRowid() == null || existeExameRealizado()) {
 			return INPUT;
 		}
-		//verificar se e um exame novo ou exame para editar
+		// verificar se é um exame novo ou exame para editar
 
-		if(exameRealizadoVo.getRowid() != "") { // pode ser que de problema nessa linha, tem que verificar
+		if (exameRealizadoVo.getRowid() != "") { // pode ser que de problema nessa linha, tem que verificar
 			System.out.println("editando exame realizado");
 			business.editarExameRealizado(exameRealizadoVo);
-		}else {
+		} else {
 			System.out.println("salvando exame realizado");
 			business.salvarExameRealizado(exameRealizadoVo);
 		}
-		
+
 		return REDIRECT;
 	}
-	
-	public String editar() {
-		if(exameRealizadoVo.getRowid() == null)
-			return REDIRECT;
-		
-		exameRealizadoVo = business.buscarExameRealizadoPor(exameRealizadoVo.getRowid());
-//		 exame vo retorna o numero id
 
-//		System.out.println(exameVo);
-//		System.out.println("funfa n?");
-		
+	public String editar() {
+		if (exameRealizadoVo.getRowid() == null)
+			return REDIRECT;
+
+		exameRealizadoVo = business.buscarExameRealizadoPor(exameRealizadoVo.getRowid());
+
 		return INPUT;
 	}
-	
+
 	public String excluir() {
-		if(exameRealizadoVo.getRowid() == null)
+		if (exameRealizadoVo.getRowid() == null)
 			return REDIRECT;
-		
+
 		business.excluirExameRealizado(exameRealizadoVo);
-		
+
 		return REDIRECT;
 	}
-	
-	
-	public List<OpcoesComboBuscarExames> getListaOpcoesCombo(){
+
+	public List<OpcoesComboBuscarExames> getListaOpcoesCombo() {
 		return Arrays.asList(OpcoesComboBuscarExames.values());
 	}
-	
+
 	public List<ExameRealizadoVo> getExamesRealizados() {
 		return examesRealizados;
 	}

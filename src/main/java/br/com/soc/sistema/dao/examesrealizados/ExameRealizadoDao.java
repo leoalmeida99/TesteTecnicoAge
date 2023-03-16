@@ -23,6 +23,7 @@ public class ExameRealizadoDao extends Dao {
 			ps.setString(i++, exameRealizadoVo.getDataRealizacao());
 			ps.executeUpdate();
 		} catch (SQLException e) {
+			System.out.println("deu ruim aqui hein");
 			e.printStackTrace();
 		}
 	}
@@ -169,4 +170,42 @@ public class ExameRealizadoDao extends Dao {
 		}
 		return null;
 	}
+
+	public ExameRealizadoVo buscarExamesRealizadosPorFuncionarioExameEData(Integer idFuncionario, Integer idExame,String dataRealizacao) {
+		StringBuilder query = new StringBuilder("SELECT rowid id, rowid_funcionario idfuncionario, rowid_exame idexame, dt_realizacao dtrealizacao ")
+				 .append("FROM exame_realizado ")
+				 .append("WHERE rowid_funcionario = ? AND rowid_exame = ? AND dt_realizacao = ?");
+		
+		try (Connection con = getConexao(); PreparedStatement ps = con.prepareStatement(query.toString())) {
+			int i = 1;
+
+			ps.setInt(i++, idFuncionario);
+			ps.setInt(i++, idExame);
+			ps.setString(i++, dataRealizacao);
+
+			try (ResultSet rs = ps.executeQuery()) {
+				ExameRealizadoVo vo = null;
+
+				while (rs.next()) {
+					vo = new ExameRealizadoVo();
+					vo.setRowid(rs.getString("id"));
+					vo.setRowidFuncionario(rs.getString("idfuncionario"));
+					vo.setRowidExame(rs.getString("idexame"));
+					vo.setDataRealizacao(rs.getString("dtrealizacao"));
+				}
+				System.out.println(vo);
+				return vo;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+
+
+//	public List<ExameRealizadoVo> buscarExamesRealizadosPorFuncionarioExameEData() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 }

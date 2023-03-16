@@ -17,7 +17,7 @@ CREATE TABLE exame_realizado (
   rowid bigint PRIMARY KEY auto_increment,
   rowid_funcionario bigint,
   rowid_exame bigint,
-  dt_realizacao VARCHAR(255)
+  dt_realizacao date
 );
 
 INSERT INTO exame_realizado (rowid_funcionario, rowid_exame, dt_realizacao)VALUES (1, 2, '2023-03-07');
