@@ -35,12 +35,6 @@ public class ExameRealizadoVo { // tirar duvida se pode int nos atributos cd fun
 	public String getDataRealizacao() {
 		return dataRealizacao;
 	}
-//	public Date getDataRealizacao() {
-//		return dataRealizacao;
-//	}
-//	public void setDataRealizacao(Date dataRealizacao) {
-//		this.dataRealizacao = dataRealizacao;
-//	}
 
 	public String getRowid() {
 		return rowid;

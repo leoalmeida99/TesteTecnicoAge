@@ -50,7 +50,6 @@ public class ExameRealizadoBusiness {
 		
 	}	
 	
-	//implementar dps do crud
 	public List<ExameRealizadoVo> filtrarExamesRealizados(ExameRealizadoFilter filter){
 		List<ExameRealizadoVo> exameRealizado = new ArrayList<>();
 		
@@ -83,7 +82,6 @@ public class ExameRealizadoBusiness {
 		try {
 			Integer idFuncionario = Integer.parseInt(rowidFuncionario);
 			Integer idExame = Integer.parseInt(rowidExame);
-//			Integer id = Integer.parseInt(da);
 			return dao.buscarExamesRealizadosPorFuncionarioExameEData(idFuncionario,idExame,dataRealizacao);
 		}catch (NumberFormatException e) {
 			throw new BusinessException(NAO_FOI_POSSIVEL_REALIZAR_A_BUSCA);

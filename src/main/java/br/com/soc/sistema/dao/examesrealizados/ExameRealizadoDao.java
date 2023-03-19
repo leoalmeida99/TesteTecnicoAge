@@ -53,39 +53,8 @@ public class ExameRealizadoDao extends Dao {
 
 		return Collections.emptyList();
 	}
-	
-	// implementar isso depois de fazer o crud
-//	public List<ExameRealizadoVo> findAllByRowidFuncionario(Integer codigo) {
-//		StringBuilder query = new StringBuilder("SELECT rowid id, nm_funcionario nome FROM funcionario ")
-//				.append("WHERE lower(nm_funcionario) like lower(?)");
-//
-//		try (Connection con = getConexao(); PreparedStatement ps = con.prepareStatement(query.toString())) {
-//			int i = 1;
-//
-//			ps.setString(i, "%" + nome + "%");
-//
-//			try (ResultSet rs = ps.executeQuery()) {
-//				FuncionarioVo vo = null;
-//				List<FuncionarioVo> funcionarios = new ArrayList<>();
-//
-//				while (rs.next()) {
-//					vo = new FuncionarioVo();
-//					vo.setRowid(rs.getString("id"));
-//					vo.setNome(rs.getString("nome"));
-//
-//					funcionarios.add(vo);
-//				}
-//				return funcionarios;
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
-//		return Collections.emptyList();
-//	}
 
 	public ExameRealizadoVo findByCodigo(Integer codigo) {
-//		StringBuilder query = new StringBuilder("SELECT rowid id, nm_funcionario nome FROM funcionario ")
-//				.append("WHERE rowid = ?");
 
 		StringBuilder query = new StringBuilder("SELECT rowid id, rowid_funcionario idfuncionario, rowid_exame idexame, dt_realizacao dtrealizacao ")
 				 .append("FROM exame_realizado WHERE rowid = ?");
@@ -203,9 +172,4 @@ public class ExameRealizadoDao extends Dao {
 		return null;
 	}
 
-
-//	public List<ExameRealizadoVo> buscarExamesRealizadosPorFuncionarioExameEData() {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
 }
