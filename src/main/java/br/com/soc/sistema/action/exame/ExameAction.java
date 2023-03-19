@@ -53,25 +53,25 @@ public class ExameAction extends Action {
 	}
 	
 	public String editar() {
-		if(exameVo.getRowid() == null)
+		if(exameVo.getRowid() == null) {
 			return REDIRECT;
-		
+		}
 		exameVo = business.buscarExamePor(exameVo.getRowid());
-//		 exame vo retorna o numero id
-
-//		System.out.println(exameVo);
-//		System.out.println("funfa n?");
 		
 		return INPUT;
 	}
 	
+	private boolean verificarSeOExameFoiRealizadoPorAlgumFuncionario() {
+		ExameRealizadoVo exame = business.buscarExameRealizado(exameVo.getRowid());
+		if(exame == null) {
+			return false;
+		}
+		return true;
+	}
+	
 	public String excluir() {
-		
-		int idExame = Integer.parseInt(exameVo.getRowid());
-		ExameRealizadoDao exameRealizadoDao = new ExameRealizadoDao();
-//		System.out.println(exameRealizadoDao);
 
-		if(exameVo.getRowid() == null || exameRealizadoDao.buscarPorExame(idExame) != null)
+		if(exameVo.getRowid() == null || verificarSeOExameFoiRealizadoPorAlgumFuncionario())
 			return REDIRECT;
 		
 		business.excluirExame(exameVo);

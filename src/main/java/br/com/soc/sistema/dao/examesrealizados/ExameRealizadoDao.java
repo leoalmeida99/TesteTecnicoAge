@@ -144,14 +144,14 @@ public class ExameRealizadoDao extends Dao {
 		
 	}
 
-	public ExameRealizadoVo buscarPorExame(Integer codigo) {
+	public ExameRealizadoVo buscarPorExame(String codigo) {
 		StringBuilder query = new StringBuilder("SELECT rowid id, rowid_funcionario idfuncionario, rowid_exame idexame, dt_realizacao dtrealizacao ")
 				 .append("FROM exame_realizado WHERE rowid_exame = ?");
 		
 		try (Connection con = getConexao(); PreparedStatement ps = con.prepareStatement(query.toString())) {
 			int i = 1;
 
-			ps.setInt(i, codigo);
+			ps.setString(i, codigo);
 
 			try (ResultSet rs = ps.executeQuery()) {
 				ExameRealizadoVo vo = null;

@@ -32,10 +32,7 @@ public class ExameRealizadoAction extends Action {
 	}
 
 	private boolean existeExameRealizado() {
-        // buscar na base de dados se já existe um registro com os mesmos valores de funcionário, exame e data
-//        List<ExameRealizadoVo> exames = business.buscarExamesRealizadosPorFuncionarioExameEData(idFuncionario, idExame, dataRealizacao);
         ExameRealizadoVo exames = business.buscarExamesRealizadosPorFuncionarioExameEData(exameRealizadoVo.getRowidFuncionario(), exameRealizadoVo.getRowidExame(), exameRealizadoVo.getDataRealizacao());
-        // se existir algum registro, retorna true
         if(exames == null) {
         	return false;
         }

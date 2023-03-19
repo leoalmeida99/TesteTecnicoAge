@@ -4,14 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.soc.sistema.dao.exames.ExameDao;
+import br.com.soc.sistema.dao.examesrealizados.ExameRealizadoDao;
 import br.com.soc.sistema.exception.BusinessException;
 import br.com.soc.sistema.filter.ExameFilter;
+import br.com.soc.sistema.vo.ExameRealizadoVo;
 import br.com.soc.sistema.vo.ExameVo;
 
 public class ExameBusiness {
 
 	private static final String FOI_INFORMADO_CARACTER_NO_LUGAR_DE_UM_NUMERO = "Foi informado um caracter no lugar de um numero";
 	private ExameDao dao;
+	ExameRealizadoDao exameRealizadoDao = new ExameRealizadoDao();
 	
 	public ExameBusiness() {
 		this.dao = new ExameDao();
@@ -71,8 +74,9 @@ public class ExameBusiness {
 		}
 	}
 
-//	public void buscarExame(Integer idExame) {
-//		return dao.buscarPorExame(idExame);
-//		
-//	}
+	public ExameRealizadoVo buscarExameRealizado(String rowid) {
+	
+		return exameRealizadoDao.buscarPorExame(rowid);
+	}
+
 }
