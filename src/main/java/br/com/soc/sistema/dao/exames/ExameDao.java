@@ -131,11 +131,4 @@ public class ExameDao extends Dao {
 		}	
 	}
 	
-//	public boolean exameFoiRealizadoPorAlgumFuncionario(int idExame) {
-//		
-//		
-//		
-//	    return true;
-//	}
-	
 }

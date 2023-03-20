@@ -18,10 +18,6 @@ public class ExameRealizadoBusiness {
 		this.dao = new ExameRealizadoDao();
 	}
 	
-//	public List<ExameRealizadoVo> buscarExamesRealizadosPorFuncionarioExameEData(){
-//		return dao.buscarExamesRealizadosPorFuncionarioExameEData();
-//	}
-	
 	public List<ExameRealizadoVo> trazerTodosOsExamesRealizados(){
 		return dao.findAllExamesRealizados();
 	}
